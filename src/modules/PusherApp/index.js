@@ -1,5 +1,8 @@
 import React , {Component} from 'react';
 import Pusher from 'pusher-js';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import * as pusherActions from '../../actions/pusherActions';
 
 class PusherApp extends Component {
   constructor() {
@@ -50,17 +53,18 @@ class PusherApp extends Component {
   }
 
   render() {
+    const {messages, user} = this.props.state;
     return (
       <div>
         {
-          this.state.user
-            ? this.state.user
+          user
+            ? user
             : <UserLogin
                 onSubmit={this.userSubmit}
               />
         }
-        <CommentForm user={this.state.user} onSubmit={this.commentSubmit}/>
-        <CommentList messages={this.state.messages} />
+        <CommentForm user={user} onSubmit={this.commentSubmit}/>
+        <CommentList messages={messages} />
       </div>
     )
   }
@@ -202,4 +206,9 @@ const Button = ({text, onClick}) => (
   </button>
 )
 
-export default PusherApp;
+export default connect(state => ({
+  state: state.pusher
+}),
+(dispatch) => ({
+  actions: bindActionCreators(pusherActions, dispatch)
+}))(PusherApp);
