@@ -26,7 +26,7 @@
     "babel",
     "react-transform"
   ],
-  "author": "Dan Abramov <dan.abramov@me.com> (http://github.com/gaearon)",
+  "author": "Collin Delphia <candrew022@gmail.com> (http://github.com/kikoku)",
   "license": "CC0-1.0",
   "bugs": {
     "url": "https://github.com/kikoku/react-transform-boilerplate/issues"
@@ -51,12 +51,15 @@
     "webpack-hot-middleware": "^2.9.1"
   },
   "dependencies": {
+    "babel-plugin-transform-object-rest-spread": "^6.6.5",
     "body-parser": "^1.15.0",
     "express": "^4.13.4",
     "pusher": "^1.2.1",
     "pusher-js": "^3.0.0",
     "react": "^0.14.7",
     "react-dom": "^0.14.7",
-    "react-router": "^2.3.0"
+    "react-redux": "^4.4.5",
+    "react-router": "^2.3.0",
+    "redux": "^3.5.2"
   }
 }
