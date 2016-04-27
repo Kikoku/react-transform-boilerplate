@@ -1,5 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
-import PusherApp from './pusher/PusherApp';
+import { Router, browserHistory } from 'react-router';
 
-render(<PusherApp />, document.getElementById('root'));
+import routes from './routes'
+
+render(<Router routes={routes} history={browserHistory}/>, document.getElementById('root'));
