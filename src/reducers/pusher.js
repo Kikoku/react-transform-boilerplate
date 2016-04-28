@@ -14,10 +14,11 @@ const pusher = (state = defaultState, action) => {
         ...state,
         user: action.user
       }
-    case types.COMMENT_SUBMIT:
+    case types.MESSAGE_SUBMIT:
       return {
         ...state,
         messages: [
+          ...state.messages,
           action.message
         ]
       }
