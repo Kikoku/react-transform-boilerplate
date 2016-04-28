@@ -1,19 +1,10 @@
 import React , {Component} from 'react';
 import Pusher from 'pusher-js';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import * as pusherActions from '../../actions/pusherActions';
 
 class PusherApp extends Component {
-  constructor() {
-    super();
-    this.state = {
-      user: false,
-      messages: [{
-        user: 'Server',
-        msg: 'Welcome to real time comments'
-      }]
-    }
-    this.userSubmit = this.userSubmit.bind(this);
-    this.commentSubmit = this.commentSubmit.bind(this);
-  }
 
   componentWillMount() {
     this.pusher = new Pusher('a72b893e775eb14e8b4c');
@@ -21,21 +12,9 @@ class PusherApp extends Component {
   }
 
   componentDidMount() {
-
     this.channel.bind('post_message', (data) => {
-      this.setState({
-        messages: [
-          ...this.state.messages,
-          data
-        ]
-      });
+      this.props.actions.messageSubmit(data);
     });
-  }
-
-  userSubmit(name) {
-    this.setState({
-      user: name
-    })
   }
 
   commentSubmit(message) {
@@ -50,17 +29,21 @@ class PusherApp extends Component {
   }
 
   render() {
+
+    const {messages, user} = this.props.state;
+    const {userSubmit} = this.props.actions;
+
     return (
       <div>
         {
-          this.state.user
-            ? this.state.user
+          user
+            ? user
             : <UserLogin
-                onSubmit={this.userSubmit}
+                onSubmit={userSubmit}
               />
         }
-        <CommentForm user={this.state.user} onSubmit={this.commentSubmit}/>
-        <CommentList messages={this.state.messages} />
+        <CommentForm user={user} onSubmit={this.commentSubmit}/>
+        <CommentList messages={messages} />
       </div>
     )
   }
@@ -145,16 +128,13 @@ class CommentForm extends Component {
         error: 'Cannot be null'
       })
     } else {
-      console.log(this.state.msg)
       this.props.onSubmit({
         user: this.props.user,
         msg: this.state.msg
       })
-      console.log('thist')
       this.setState({
         msg: ''
       })
-      console.log(this.state)
     }
   }
 
@@ -184,7 +164,7 @@ const CommentList = ({messages}) => (
   <ul>
     {
       messages.map((message, i) => (
-        <Comment user={message.user} msg={message.msg}/>
+        <Comment user={message.user} msg={message.msg} key={i} />
       ))
     }
   </ul>
@@ -192,7 +172,7 @@ const CommentList = ({messages}) => (
 
 const Comment = ({user, msg}) => (
   <li>
-    <p><strong>{user}</strong> &mdash; {msg}</p>
+    <strong>{user}</strong> &mdash; {msg}
   </li>
 )
 
@@ -202,4 +182,9 @@ const Button = ({text, onClick}) => (
   </button>
 )
 
-export default PusherApp;
+export default connect(state => ({
+  state: state.pusher
+}),
+(dispatch) => ({
+  actions: bindActionCreators(pusherActions, dispatch)
+}))(PusherApp);
