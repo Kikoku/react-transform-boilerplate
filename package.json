@@ -56,10 +56,12 @@
     "express": "^4.13.4",
     "pusher": "^1.2.1",
     "pusher-js": "^3.0.0",
+    "querystring": "^0.2.0",
     "react": "^0.14.7",
     "react-dom": "^0.14.7",
     "react-redux": "^4.4.5",
     "react-router": "^2.3.0",
-    "redux": "^3.5.2"
+    "redux": "^3.5.2",
+    "request-promise": "^3.0.0"
   }
 }
