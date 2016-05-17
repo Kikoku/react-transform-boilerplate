@@ -5,7 +5,8 @@ const Workspace = ({children}) => (
   <div>
     <nav>
       <IndexLink to="/">Home</IndexLink>{' '}
-      <Link to="/pusher">pusher</Link>
+      <Link to="/pusher">pusher</Link>{' '}
+      <Link to="/accountkit">accountKit</Link>
     </nav>
     {children}
   </div>
