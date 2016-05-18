@@ -38,20 +38,22 @@ class AccountKitLogin extends Component {
   }
 
   phoneLogin() {
-    const country_code = '+1';
-    const ph_num = '8023499531';
+    // const country_code = '+1';
+    // const ph_num = '8023499531';
     AccountKit.login(
       'PHONE',
-      {countryCode: country_code,phoneNumber: ph_num}, // Will use default values if this arg is not specified
+      {},// {countryCode: country_code,phoneNumber: ph_num},
+      // Will use default values if this arg is not specified
       this.loginCallback
     )
   }
 
   emailLogin() {
-    const email_address = 'candrew022@gmail.com';
+    // const email_address = 'candrew022@gmail.com';
     AccountKit.login(
       'EMAIL',
-      {emailAddress: email_address}, // Will use default values if this arg is not specified
+      {},// {emailAddress: email_address},
+      // Will use default values if this arg is not specified
       this.loginCallback
     )
   }
