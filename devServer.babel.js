@@ -87,6 +87,11 @@ app.post('/sendcode', (req, res) => {
     return axios.get(me_endpoint_url);
 
   }).then((res) => {
+
+    const identidy = res.data.phone ? res.data.phone.number : res.data.email.address;
+
+    res.send(identidy);
+
   })
 })
 
