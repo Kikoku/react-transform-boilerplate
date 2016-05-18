@@ -78,6 +78,16 @@ app.post('/sendcode', (req, res) => {
   }
 
   const token_exchange_url = `${token_exchange_base_url}?grant_type=${params.grant_type}&code=${params.code}&access_token=${params.access_token}`;
+
+  axios.get(token_exchange_url)
+  .then((res) => {
+
+    const me_endpoint_url = `${me_endpoint_base_url}?access_token=${res.data.access_token}`;
+
+    return axios.get(me_endpoint_url);
+
+  }).then((res) => {
+  })
 })
 
 app.get('*', (req, res) => {
