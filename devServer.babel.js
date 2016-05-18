@@ -69,6 +69,15 @@ app.post('/message', (req, res) => {
 
 
 app.post('/sendcode', (req, res) => {
+
+  const app_access_token = ['AA', facbook_config.facebook.id, facbook_config.account_kit.secret].join('|');
+  const params = {
+    grant_type: 'authorization_code',
+    code: req.body.code,
+    access_token: app_access_token
+  }
+
+  const token_exchange_url = `${token_exchange_base_url}?grant_type=${params.grant_type}&code=${params.code}&access_token=${params.access_token}`;
 })
 
 app.get('*', (req, res) => {
