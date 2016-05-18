@@ -23,7 +23,6 @@ class AccountKitLogin extends Component {
   }
 
   loginCallback(response) {
-    console.log(response)
     switch(response.status) {
       case 'PARTIALLY_AUTHENTICATED':
         this.props.actions.authWithAccountKit(response.code);
