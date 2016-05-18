@@ -67,6 +67,10 @@ app.post('/message', (req, res) => {
   res.end()
 })
 
+
+app.post('/sendcode', (req, res) => {
+})
+
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
