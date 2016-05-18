@@ -8,6 +8,8 @@ import facbook_config from './facbook.config';
 import Querystring from 'querystring';
 import axios from 'axios';
 
+const me_endpoint_base_url = `https://graph.accountkit.com/${facbook_config.account_kit.version}/me`;
+const token_exchange_base_url = `https://graph.accountkit.com/${facbook_config.account_kit.version}/access_token`;
 
 let notifications = [
   {message: 'db notif'}
