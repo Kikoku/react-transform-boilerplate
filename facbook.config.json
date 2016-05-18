@@ -1,0 +1,11 @@
+{
+  "facebook": {
+    "id": "504537916405124",
+    "secret": "5a3686f46e60b1929b87c56337ff1b30"
+  },
+  "account_kit": {
+    "secret": "8008a555933028f55947db7ce94fb9f8",
+    "client_token": "7abdb51370887f5b8b162ce000888f2c",
+    "version": "v1.0"
+  }
+}
